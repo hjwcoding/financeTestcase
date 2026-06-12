@@ -34,7 +34,7 @@ const INPUT = {
   FCODE: 'SCRAPING-MODULE',
   LOGINMETHOD: '0',
   MODULE: '1',
-  TEST_PATH: 'C:\\Users\\kwic\\Desktop\\ggg\\bankTest\\html',
+  TEST_PATH: path.join(__dirname, 'html'),
 };
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -91,7 +91,6 @@ test.describe('[로그인 성공] 정상 케이스', () => {
    * 분류: 기능 테스트
    * 시나리오: 로그인 성공 시 법인명(entpNm) 정상 반환
    * 소스 근거: Login() STEP6 — entpNm 존재 시 ACCTNM 설정 후 return true
-   * 회사 이름은 익명처리하여 FAIL 발생합니다.
    */
   test('TC-LOGIN-002: 로그인 성공 — 법인명 정상 반환', async ({ page }) => {
     if (TEST_PATH) {

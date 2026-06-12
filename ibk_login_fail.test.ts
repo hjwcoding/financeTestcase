@@ -21,7 +21,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 const BASE_URL = 'https://bank-a.example.com';
-const TEST_PATH = 'C:\\Users\\kwic\\Desktop\\ggg\\bankTest\\html';
+const TEST_PATH = path.join(__dirname, 'html');
 
 // ─── 에러코드 상수 (SCRAPING-MODULE.js 와 동일) ────────────────────────────────────────
 const ERR = {
