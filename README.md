@@ -41,8 +41,8 @@
 
 | 모드 | 조건 | 동작 |
 |---|---|---|
-| **Mock 모드** | `KWJS_PATH` 값 있음 | fixture HTML을 `page.route()`로 서빙 — 실서버 접속 없음 |
-| **Real 모드** | `KWJS_PATH` 비어 있음 | 실제 bank-a.example.com 에 HTTP 요청 |
+| **Mock 모드** | `TEST_PATH` 값 있음 | `html/` 폴더의 fixture HTML을 `page.route()`로 서빙 — 실서버 접속 없음 |
+| **Real 모드** | `TEST_PATH` 비어 있음 | 실제 대상 서버에 HTTP 요청 |
 
 ### 핵심 기술 이슈 해결
 
@@ -57,8 +57,8 @@
 
 | TC ID | 시나리오 | 테스트 유형 | 검증 내용 |
 |---|---|---|---|
-| TC-LOGIN-001 | 로그인 첫 페이지 title 확인 | 기능 테스트 | `<title>기업인터넷뱅킹</title>` 존재 |
-| TC-LOGIN-002 | 로그인 성공 — 법인명 반환 | 기능 테스트 | `entpNm` 필드 및 법인명 텍스트 확인 |
+| TC-LOGIN-001 | 로그인 첫 페이지 title 확인 | 기능 테스트 | 전체 HTML 내 `기업인터넷뱅킹` 텍스트 존재 |
+| TC-LOGIN-002 | 로그인 성공 — 법인명 반환 | 기능 테스트 | 응답 HTML 내 법인명(`금융기관A(주)`) 텍스트 확인 |
 | TC-LOGIN-010 | LOGINMETHOD 경계값 분기 검증 | 경계값 테스트 | `'0'` / `'1'` / `'2'` / `''` 입력별 동작 확인 |
 | TC-LOGIN-011 | reTryCount 최대 2회 초과 안 함 | 탐색적 테스트 | 재시도 횟수 3회 초과 방지 검증 |
 
@@ -104,26 +104,37 @@
 
 ```
 project/
-├── tests/
-│   ├── login_success.test.ts   # 성공 케이스 (기능 / 경계값 / 탐색적)
-│   └── login_fail.test.ts      # 실패 케이스 (네거티브 / 예외 처리)
-├── fixtures/
-│   ├── firstPage.html              # 로그인 첫 페이지 fixture
-│   ├── success.html                # 로그인 성공 응답 fixture
-│   └── fail.html                   # 로그인 실패 응답 fixture (만료/폐기)
-└── playwright.config.ts
-
-fixture 파일은 보안상 제외
+├── html/
+│   ├── firstPage.html          # 로그인 첫 페이지 fixture
+│   ├── success.html            # 로그인 성공 응답 fixture
+│   └── fail.html               # 로그인 실패 응답 fixture (만료/폐기)
+├── login_success.test.ts       # 성공 케이스 (기능 / 경계값 / 탐색적)
+├── login_fail.test.ts          # 실패 케이스 (네거티브 / 예외 처리)
+├── playwright.config.ts
+└── README.md
 ```
 
 ---
 
-## 🔧 실행
+## 🔧 설치 및 실행
+
+### 1. 저장소 클론
+
+```bash
+git clone https://github.com/hjwcoding/financeTestcase.git
+cd financeTestcase
+```
+
+### 2. 패키지 설치
 
 ```bash
 npm install
 npx playwright install chromium
+```
 
+### 3. 실행
+
+```bash
 # 전체 실행
 npx playwright test
 
