@@ -14,7 +14,7 @@ export default defineConfig({
   ],
 
   use: {
-    baseURL: 'https://kiup.ibk.co.kr',
+    baseURL: 'https://bank-a.example.com',
     headless: true,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',

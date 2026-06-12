@@ -21,7 +21,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 const BASE_URL = 'https://bank-a.example.com';
-const KWJS_PATH = 'C:\\repo\\scripts\\SmartAIB\\assets_duktape\\es5test\\fixtures\\SCRAPING-MODULE\\login';
+const TEST_PATH = 'C:\\Users\\kwic\\Desktop\\ggg\\bankTest\\html';
 
 // ─── 에러코드 상수 (SCRAPING-MODULE.js 와 동일) ────────────────────────────────────────
 const ERR = {
@@ -43,7 +43,7 @@ const EXPECTED_50250 = {
 // ─── 헬퍼 ────────────────────────────────────────────────────────────────────
 
 function fixture(filename: string): string {
-  return fs.readFileSync(path.join(KWJS_PATH, filename), 'utf-8');
+  return fs.readFileSync(path.join(TEST_PATH, filename), 'utf-8');
 }
 
 function makeFixtureHtml(keyword: string): string {

@@ -1,0 +1,4 @@
+.restclient/
+playwright-report/
+node_modules/
+test-results/
